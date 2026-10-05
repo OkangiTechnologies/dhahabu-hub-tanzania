@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practical Tanzania gold mining information: indicative prices, licensing, legal trading, export guidance and processing-plant selection.">
+  <title>Dhahabu Yetu Tanzania | Gold Is Wealth</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav-wrap">
+    <a class="brand" href="#home"><span class="brand-mark">Au</span><span>Dhahabu Yetu <small>Tanzania · by OkangiTech</small></span></a>
+    <button class="menu-btn" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+    <nav id="nav">
+      <a href="#prices" data-i18n="nav-prices">Gold Price</a>
+      <a href="#assistant" data-i18n="nav-assistant">Ask Assistant</a>
+      <a href="/licensing" data-i18n="nav-licensing">Licensing</a>
+      <a href="/trade" data-i18n="nav-trade">Buy & Sell</a>
+      <a href="/sources" data-i18n="nav-sources">Official Sources</a>
+      <a href="/login" data-i18n="nav-login">Login</a>
+    </nav>
+    <div class="lang-switch">
+      <label for="languageSelect" data-i18n="lang-label">Language</label>
+      <select id="languageSelect" aria-label="Choose language">
+        <option value="en">EN</option>
+        <option value="sw">SW</option>
+      </select>
+    </div>
+    <a class="btn primary nav-account" href="/register" data-i18n="nav-register">Register</a><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme">Dark</button>
+  </div>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow" data-i18n="hero-eyebrow">PRACTICAL MINING INFORMATION</div>
+      <h1 data-i18n="hero-title">Know the price. Know the rules. Mine smarter.</h1>
+      <p class="hero-copy" data-i18n="hero-copy">A straightforward resource for Tanzania’s small-scale gold miners, entrepreneurs and new entrants — with official price information, licensing guidance, legal trading steps and practical plant-selection checks.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#prices" data-i18n="hero-cta-price">Check today's price</a>
+        <a class="text-link hero-link" href="#assistant" data-i18n="hero-cta-assistant">Ask the assistant</a>
+      </div>
+      <p class="notice" data-i18n="hero-notice">Information is educational and should be confirmed with the Mining Commission before making a legal, financial or operational decision.</p>
+      <div class="trust-line"><span><b data-i18n="trust-title">A service by OkangiTech Company Limited</b><small data-i18n="trust-copy">Clear information for Tanzania's resource economy.</small></span></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-top"><span data-i18n="hero-card-title">OFFICIAL PRICE FEED</span><span id="statusDot" class="dot"></span></div>
+      <div id="heroPrice" class="hero-price">TZS — / g</div>
+      <div id="heroDate" class="muted">Loading Mining Commission data…</div>
+      <div class="mini-grid">
+        <div><span data-i18n="hero-buying-label">Buying centre</span><strong id="heroBuying">—</strong></div>
+        <div><span data-i18n="hero-market-label">Mineral market</span><strong id="heroMarket">—</strong></div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section id="prices" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow" data-i18n="section-prices-kicker">01 · GOLD PRICE</div><h2 data-i18n="section-prices-title">Official indicative gold prices</h2></div>
+      <button class="refresh" onclick="loadPrice()" data-i18n="refresh-label">↻ Refresh</button>
+    </div>
+    <p class="lead" data-i18n="section-prices-lead">The Mining Commission publishes indicative gold prices. Use these figures as an official reference point, then confirm the applicable valuation, purity and transaction charges for your actual sale.</p>
+    <div class="price-grid">
+      <article class="price-card featured"><span>Buying Centre</span><strong id="buying">—</strong><small>TZS per gram</small></article>
+      <article class="price-card"><span>Mineral Market</span><strong id="market">—</strong><small>TZS per gram</small></article>
+      <article class="price-card"><span>World Market</span><strong id="worldTzs">—</strong><small>TZS per gram</small></article>
+      <article class="price-card"><span>World Market</span><strong id="worldUsd">—</strong><small>USD per troy ounce</small></article>
+    </div>
+    <div class="data-strip"><span>Last official update: <b id="priceDate">—</b></span><span id="fetchStatus">Checking source…</span><a href="https://www.tumemadini.go.tz/pages/view-previous-prices/" target="_blank" rel="noopener">View official price history →</a></div>
+    <div class="calculator">
+      <div><div class="eyebrow">QUICK ESTIMATE</div><h3>Estimate gross value</h3><p>Enter weight and choose a reference price. This is not a final settlement value.</p></div>
+      <div class="calc-fields">
+        <label>Gold weight (grams)<input id="weight" type="number" min="0" step="0.01" value="10"></label>
+        <label>Reference price<select id="priceType"><option value="buying">Buying centre</option><option value="market">Mineral market</option><option value="worldTzs">World market (TZS/g)</option></select></label>
+        <div class="calc-result"><span>Estimated gross value</span><strong id="estimate">TZS 0</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="licensing" class="section alt homepage-detail">
+  <div class="container">
+    <div class="eyebrow" data-i18n="section-licensing-kicker">02 · LICENSING</div>
+    <h2 data-i18n="section-licensing-title">Start with the licence that matches your activity</h2>
+    <p class="lead" data-i18n="section-licensing-lead">The Mining Commission lists several mineral rights and trading licences. For small-scale mining, the key mining right is the Primary Mining Licence (PML).</p>
+    <div class="cards-3">
+      <article class="info-card"><div class="icon">⛏</div><h3>Primary Mining Licence (PML)</h3><p>For small-scale mining. The Commission describes PMLs as Division C licences for small-scale operations and states a maximum initial capital investment threshold of US$5 million.</p><a href="https://www.tumemadini.go.tz/pages/licenseservice/" target="_blank">Official licence information ↗</a></article>
+      <article class="info-card"><div class="icon">🏪</div><h3>Broker Licence</h3><p>Allows a licensed broker to buy minerals from buying stations specified in the licence and sell to a licensed dealer. A broker licence does <b>not</b> authorize export.</p><a href="https://www.tumemadini.go.tz/pages/licenseservice/" target="_blank">Check current rules ↗</a></article>
+      <article class="info-card"><div class="icon">🌍</div><h3>Dealer Licence</h3><p>A dealer licence supports mineral trading and authorizes export, subject to the applicable requirements and permits. Licence validity and eligibility should be confirmed with the Commission.</p><a href="https://www.tumemadini.go.tz/pages/licenseservice/" target="_blank">Check current rules ↗</a></article>
+    </div>
+
+    <div class="stepper">
+      <div class="step"><b>1</b><div><h3>Identify your activity</h3><p>Mining, processing, buying, brokering or exporting may require different permissions.</p></div></div>
+      <div class="step"><b>2</b><div><h3>Confirm the area and mineral</h3><p>Check the proposed area, mineral type and whether another mineral right already covers the land.</p></div></div>
+      <div class="step"><b>3</b><div><h3>Prepare the application</h3><p>Use the Mining Commission's current application procedure and forms. Do not rely on an old checklist copied from social media.</p></div></div>
+      <div class="step"><b>4</b><div><h3>Operate within the licence</h3><p>Respect licence boundaries, safety, environmental requirements, reporting duties and applicable fees.</p></div></div>
+    </div>
+    <div class="callout"><strong>Important:</strong> Licence requirements and fees can change. Always verify the current procedure directly with the Mining Commission before paying an agent or starting an operation.</div>
+  </div>
+</section>
+
+<section id="trade" class="section homepage-detail">
+  <div class="container">
+    <div class="eyebrow" data-i18n="section-trade-kicker">03 · BUYING, SELLING & EXPORT</div>
+    <h2 data-i18n="section-trade-title">Keep the gold trade inside the legal system</h2>
+    <div class="trade-grid">
+      <div class="trade-panel">
+        <h3>Before you sell</h3>
+        <ul class="checklist">
+          <li>Confirm who is legally entitled to buy your mineral.</li>
+          <li>Use an authorized mineral market or buying centre where applicable.</li>
+          <li>Ask for valuation/transaction documentation and keep your records.</li>
+          <li>Confirm how purity, weight, royalty and inspection/clearance charges affect the transaction.</li>
+          <li>Do not transport or sell gold through an informal route because someone promises a higher price.</li>
+        </ul>
+      </div>
+      <div class="trade-panel dark">
+        <h3>Export essentials</h3>
+        <p>The Mining Commission states that mineral right holders and dealer-licence holders can export, while broker-licence holders are not authorized to export.</p>
+        <div class="export-box"><span>Export permit</span><strong>Required</strong></div>
+        <div class="export-box"><span>Royalty & inspection</span><strong>Proof of payment</strong></div>
+        <div class="export-box"><span>Application fee listed by Commission</span><strong>USD 100</strong></div>
+        <a class="btn light" href="https://www.tumemadini.go.tz/pages/procedures-for-exportation-of-minerals/" target="_blank">Official export procedure ↗</a>
+      </div>
+    </div>
+    <div class="fee-note"><b>Official fee reference:</b> the Mining Commission currently lists gold royalty at 4% when gold is sold to refinery centres; its general page also describes 6% royalty for gold/metallic minerals in the applicable category. The actual charge depends on the transaction and destination, so confirm the current treatment before a sale.</div>
+  </div>
+</section>
+
+<section id="processing" class="section alt homepage-detail">
+  <div class="container">
+    <div class="eyebrow" data-i18n="section-processing-kicker">04 · PROCESSING PLANTS</div>
+    <h2 data-i18n="section-processing-title">How to choose a leaching or elution plant</h2>
+    <p class="lead" data-i18n="section-processing-lead">Plant selection should start with legal authorization, ore characteristics, recovery objectives, worker safety and environmental controls — not simply the cheapest machine.</p>
+    <div class="flow">
+      <div class="flow-card"><span>01</span><h3>Know your ore</h3><p>Use representative sampling and appropriate testing to understand grade, mineralogy and how the ore responds to processing.</p></div>
+      <div class="flow-card"><span>02</span><h3>Check the licence</h3><p>Confirm that the plant and its operator hold the permissions required for the activity and location.</p></div>
+      <div class="flow-card"><span>03</span><h3>Check containment</h3><p>Look for controlled process areas, tailings management, drainage and measures that prevent contaminated water or material leaving the site.</p></div>
+      <div class="flow-card"><span>04</span><h3>Check worker safety</h3><p>Require appropriate PPE, ventilation, emergency arrangements, training and documented operating procedures.</p></div>
+      <div class="flow-card"><span>05</span><h3>Verify recovery</h3><p>Compare independently measured recovery and operating costs. Ask for records rather than relying on a vendor's headline percentage.</p></div>
+    </div>
+    <div class="plant-compare">
+      <div><h3>Vat leaching</h3><p>The Mining Commission has identified vat leaching as a common processing approach in small-scale mining. When assessing a facility, focus on licensing, containment, drainage, tailings control, worker protection and verified recovery.</p></div>
+      <div><h3>Elution</h3><p>Elution facilities recover gold from loaded carbon. For a small miner, verify plant authorization, secure carbon handling, ventilation, emissions control, emergency systems, operator competence and production records.</p></div>
+    </div>
+    <div class="safety"><span>⚠</span><div><b>Safety first</b><p>This website intentionally does not provide chemical recipes, dosing instructions or step-by-step hazardous-process instructions. Use licensed specialists and the Mining Commission's current safety and environmental requirements.</p></div></div>
+  </div>
+</section>
+
+<section id="markets" class="section homepage-detail">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow" data-i18n="section-markets-kicker">05 · WHERE TO TRADE</div><h2 data-i18n="section-markets-title">Mineral markets & buying centres</h2></div><a class="text-link" href="https://www.tumemadini.go.tz/statistics/list-of-mineral-markets/" target="_blank" data-i18n="market-link">Official market list →</a></div>
+    <div class="market-grid">
+      <div class="market-card"><strong>Mbeya</strong><span>Gold · Mineral Market</span></div>
+      <div class="market-card"><strong>Songwe</strong><span>Gold · Mineral Market</span></div>
+      <div class="market-card"><strong>Geita</strong><span>Gold · Buying centres</span></div>
+      <div class="market-card"><strong>Chunya, Mbeya</strong><span>Gold · Buying centres</span></div>
+      <div class="market-card"><strong>Tabora</strong><span>Gold · Mineral Market</span></div>
+      <div class="market-card"><strong>Kigoma</strong><span>Gold · Mineral Market</span></div>
+    </div>
+    <p class="muted">The official Mining Commission lists many markets and buying centres across Tanzania. Use its current list for names, locations and contacts before travelling.</p>
+  </div>
+</section>
+
+<section id="assistant" class="section assistant-section">
+  <div class="container assistant-grid">
+    <div>
+      <div class="eyebrow" data-i18n="section-assistant-kicker">07 · MINING ASSISTANT</div>
+      <h2 data-i18n="section-assistant-title">Ask practical questions. Get a clear starting point.</h2>
+      <p class="lead" data-i18n="section-assistant-lead">Ask about licences, current prices, legal selling, export requirements, markets or processing plants. The assistant uses Dhahabu Yetu's verified guidance and points you to official sources for confirmation.</p>
+      <div class="assistant-topics">
+        <button type="button" onclick="askSuggested('What licence do I need for small-scale mining?')" data-i18n="assistant-topic-licence">Small-scale licence</button>
+        <button type="button" onclick="askSuggested('How can I sell gold legally?')" data-i18n="assistant-topic-selling">Sell legally</button>
+        <button type="button" onclick="askSuggested('What do I need to export gold?')" data-i18n="assistant-topic-export">Export requirements</button>
+        <button type="button" onclick="askSuggested('How do I choose a processing plant?')" data-i18n="assistant-topic-plant">Choose a plant</button>
+      </div>
+    </div>
+    <div class="chatbot" aria-label="Mining assistant">
+      <div class="chatbot-head"><span class="assistant-avatar">OT</span><span><b data-i18n="assistant-name">OkangiTech Mining Assistant</b><small data-i18n="assistant-status">Online · Guidance based on official sources</small></span><span class="assistant-live"></span></div>
+      <div id="chatMessages" class="chat-messages" aria-live="polite"><div class="chat-bubble bot" data-i18n="assistant-welcome">Hello. Ask me a question about mining in Tanzania, and I will help you find the right starting point.</div></div>
+      <form id="chatForm" class="chat-form">
+        <label class="sr-only" for="chatInput" data-i18n="assistant-input-label">Ask a mining question</label>
+        <input id="chatInput" type="text" autocomplete="off" placeholder="Ask about mining, licences or gold prices..." data-i18n-placeholder="assistant-placeholder">
+        <button type="submit" class="chat-send" aria-label="Send question">➜</button>
+      </form>
+      <p class="chat-disclaimer" data-i18n="assistant-disclaimer">Educational guidance only. Confirm current requirements with the Mining Commission.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container site-footer-row">
+    <a class="footer-brand" href="#home"><span class="brand-mark">Au</span><span>Dhahabu Yetu <small>Tanzania</small></span></a>
+    <div class="site-footer-contact"><a href="tel:+255767425096">0767 425 096</a><a href="https://wa.me/255767425096" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:thomasokangi19@gmail.com">thomasokangi19@gmail.com</a></div>
+    <div class="site-footer-meta"><a href="/privacy" data-i18n="footer-privacy">Privacy</a><a href="/terms" data-i18n="footer-terms">Terms</a><span>© 2026 OkangiTech Company Limited</span></div>
+  </div>
+</footer>
+</main>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

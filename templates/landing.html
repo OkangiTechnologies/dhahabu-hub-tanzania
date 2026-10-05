@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page.title }} Dhahabu Yetu Tanzania by OkangiTech Company Limited.">
+  <title>{{ page.title }} | Dhahabu Yetu Tanzania</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header class="topbar"><div class="container nav-wrap"><a class="brand" href="/"><span class="brand-mark">Au</span><span>Dhahabu Yetu <small>Tanzania · by OkangiTech</small></span></a><nav><a href="/">Home</a><a href="/licensing">Licensing</a><a href="/trade">Buy & Sell</a><a href="/processing">Processing</a><a href="/markets">Markets</a><a href="/sources">Sources</a><a href="/login">Login</a></nav><a class="btn primary nav-account" href="/register">Register</a><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme">Dark</button></div></header>
+<main>
+  <section class="landing-hero"><div class="container landing-hero-inner"><div class="landing-hero-copy"><a class="text-link" href="/">← Dhahabu Yetu Tanzania</a><div class="eyebrow">{{ page.kicker }}</div><h1>{{ page.title }}</h1><p>{{ page.intro }}</p></div><figure class="landing-photo"><img src="{{ url_for('static', filename='images/' + image) }}" alt="{% if image == 'gold-sample-scale.jpeg' %}Gold-bearing mineral sample being weighed on a digital scale{% elif image == 'geita-gold-market.jpeg' %}Geita gold buying market and Mining Commission building in Tanzania{% else %}Tanzanian miner examining a rock sample while wearing a safety helmet{% endif %}"><figcaption>{% if image == 'gold-sample-scale.jpeg' %}Measure carefully. Trade responsibly.{% elif image == 'geita-gold-market.jpeg' %}A real place to trade with confidence.{% else %}Local knowledge. Practical decisions.{% endif %}</figcaption></figure></div></section>
+  <section class="section landing-content"><div class="container"><div class="landing-cards">{% for title, text, link in page.cards %}<article class="landing-card"><span class="landing-index">{{ '%02d'|format(loop.index) }}</span><h2>{{ title }}</h2><p>{{ text }}</p><a href="{{ link }}" target="_blank" rel="noopener">View official information ↗</a></article>{% endfor %}</div>{% if page.steps %}<div class="landing-steps"><div class="eyebrow">A PRACTICAL CHECKLIST</div><div class="step-list">{% for step in page.steps %}<div><b>{{ loop.index }}</b><span>{{ step }}</span></div>{% endfor %}</div></div>{% endif %}<div class="landing-note"><strong>Need a quick answer?</strong><span>Use the mining assistant on the homepage or contact OkangiTech Company Limited.</span><a href="/#assistant">Ask the assistant →</a></div></div></section>
+</main>
+<footer class="landing-footer"><div class="container"><span>© 2026 Dhahabu Hub Tanzania</span><span><a href="tel:+255767425096">0767 425 096</a> · <a href="mailto:thomasokangi19@gmail.com">thomasokangi19@gmail.com</a></span></div></footer>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

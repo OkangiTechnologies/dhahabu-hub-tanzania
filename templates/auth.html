@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ 'Login' if mode == 'login' else 'Register' }} | Dhahabu Yetu Tanzania</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header class="topbar"><div class="container nav-wrap"><a class="brand" href="/"><span class="brand-mark">Au</span><span>Dhahabu Yetu <small>Tanzania · by OkangiTech</small></span></a><div class="auth-nav"><a href="/">Home</a><a href="/login">Login</a><a class="btn primary" href="/register">Register</a><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode">Dark</button></div></div></header>
+<main class="auth-page"><div class="auth-shell"><div class="auth-context"><div class="eyebrow">DHAHABU YETU TANZANIA</div><h1>Better mining decisions start with better information.</h1><p>Save your place in the platform as we prepare personalized price alerts, market updates and practical mining resources.</p></div><section class="auth-card" aria-labelledby="auth-title"><div class="auth-card-top"><span class="auth-mark">Au</span><span class="auth-note">OkangiTech account</span></div>{% if mode == 'login' %}<h2 id="auth-title">Welcome back</h2><p class="auth-subtitle">Sign in to continue to Dhahabu Yetu.</p><form class="auth-form" action="#" method="post"><label for="email">Email address<input id="email" name="email" type="email" autocomplete="email" required></label><label for="password">Password<input id="password" name="password" type="password" autocomplete="current-password" required></label><button class="btn primary" type="submit">Login</button></form><p class="auth-switch">New to Dhahabu Yetu? <a href="/register">Create an account</a></p>{% else %}<h2 id="auth-title">Create your account</h2><p class="auth-subtitle">Join the information platform for Tanzania's mining economy.</p><form class="auth-form" action="#" method="post"><label for="name">Full name<input id="name" name="name" type="text" autocomplete="name" required></label><label for="register-email">Email address<input id="register-email" name="email" type="email" autocomplete="email" required></label><label for="register-password">Password<input id="register-password" name="password" type="password" minlength="8" autocomplete="new-password" required></label><button class="btn primary" type="submit">Register</button></form><p class="auth-switch">Already have an account? <a href="/login">Login</a></p>{% endif %}<p class="auth-disclaimer">Account creation and sign-in are prepared for the next authentication release. Do not use real passwords until backend authentication is connected.</p></section></div></main>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
